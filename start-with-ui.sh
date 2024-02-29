@@ -23,7 +23,7 @@ mkdir -p $VOLUME/logs
 # fi
 
 # Move text-generation-webui's folder to $VOLUME so models and all config will persist
-# "$SCRIPTDIR"/textgen-on-workspace.sh
+"$SCRIPTDIR"/textgen-on-workspace.sh
 
 # If passed a MODEL variable from Runpod template, start it downloading
 # This will block the UI until completed
@@ -37,9 +37,9 @@ mkdir -p $VOLUME/logs
 # cd /workspace/text-generation-webui && git pull
 
 # Move the script that launches text-gen to $VOLUME, so users can make persistent changes to CLI arguments
-# if [[ ! -f $VOLUME/run-text-generation-webui.sh ]]; then
-# 	mv "$SCRIPTDIR"/run-text-generation-webui.sh $VOLUME/run-text-generation-webui.sh
-# fi
+if [[ ! -f $VOLUME/run-text-generation-webui.sh ]]; then
+	mv "$SCRIPTDIR"/run-text-generation-webui.sh $VOLUME/run-text-generation-webui.sh
+fi
 
 python3 /root/scripts/rp_handler.py >/workspace/logs/rp_handler.log 2>&1 &
 
@@ -59,7 +59,7 @@ ARGS=()
 		# 	ARGS=("${ARGS[@]}" ${UI_ARGS})
 		# fi
 
-(./run-text-generation-webui.sh "${ARGS[@]}" 2>&1) >>$VOLUME/logs/text-generation-webui.log
+($VOLUME/run-text-generation-webui.sh "${ARGS[@]}" 2>&1) >>$VOLUME/logs/text-generation-webui.log
 
 	# fi
 # 	sleep 2
