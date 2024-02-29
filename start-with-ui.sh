@@ -2,7 +2,7 @@
 echo "Starting OOBA"
 
 SCRIPTDIR=/root/scripts
-VOLUME=/workspace
+VOLUME=/runpod-volume
 
 # If a volume is already defined, $VOLUME will already exist
 # If a volume is not being used, we'll still use /worksapce to ensure everything is in a known place.
@@ -41,7 +41,7 @@ if [[ ! -f $VOLUME/run-text-generation-webui.sh ]]; then
 	mv "$SCRIPTDIR"/run-text-generation-webui.sh $VOLUME/run-text-generation-webui.sh
 fi
 
-python3 /root/scripts/rp_handler.py >/workspace/logs/rp_handler.log 2>&1 &
+python3 /root/scripts/rp_handler.py >/runpod-volume/logs/rp_handler.log 2>&1 &
 
 ARGS=()
 # while true; do

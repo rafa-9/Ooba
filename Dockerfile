@@ -50,6 +50,6 @@ COPY scripts /root/scripts
 
 COPY --chmod=755 start-with-ui.sh /start.sh
 
-WORKDIR /workspace
+WORKDIR /runpod-volume
 
 CMD [ "/start.sh" ]
