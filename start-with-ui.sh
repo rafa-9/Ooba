@@ -38,7 +38,7 @@ mkdir -p $VOLUME/logs
 
 # Move the script that launches text-gen to $VOLUME, so users can make persistent changes to CLI arguments
 # if [[ ! -f $VOLUME/run-text-generation-webui.sh ]]; then
-mv "$SCRIPTDIR"/run-text-generation-webui.sh $VOLUME/run-text-generation-webui.sh
+	mv "$SCRIPTDIR"/run-text-generation-webui.sh $VOLUME/run-text-generation-webui.sh
 # fi
 
 python3 /root/scripts/rp_handler.py >/runpod-volume/logs/rp_handler.log 2>&1 &
