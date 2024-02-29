@@ -23,7 +23,7 @@ mkdir -p $VOLUME/logs
 # fi
 
 # Move text-generation-webui's folder to $VOLUME so models and all config will persist
-"$SCRIPTDIR"/textgen-on-workspace.sh
+# "$SCRIPTDIR"/textgen-on-workspace.sh
 
 # If passed a MODEL variable from Runpod template, start it downloading
 # This will block the UI until completed
