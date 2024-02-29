@@ -4,17 +4,17 @@ ARG UBUNTU_VERSION="22.04"
 ARG DOCKER_FROM=nvidia/cuda:$CUDA_VERSION-cudnn$CUDNN_VERSION-devel-ubuntu$UBUNTU_VERSION
 
 # Base NVidia CUDA Ubuntu image
-# FROM $DOCKER_FROM AS base
+FROM $DOCKER_FROM AS base
 
 # Install Python plus openssh, which is our minimum set of required packages.
-# RUN apt-get update -y && \
-#     apt-get install -y python3 python3-pip python3-venv && \
-#     apt-get install -y --no-install-recommends openssh-server openssh-client git git-lfs && \
-#     python3 -m pip install --upgrade pip && \
-#     apt-get clean && \
-#     rm -rf /var/lib/apt/lists/*
+RUN apt-get update -y && \
+  apt-get install -y python3 python3-pip python3-venv && \
+  apt-get install -y --no-install-recommends openssh-server openssh-client git git-lfs && \
+  python3 -m pip install --upgrade pip && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/*
 
-# ENV PATH="/usr/local/cuda/bin:${PATH}"
+ENV PATH="/usr/local/cuda/bin:${PATH}"
 
 # Install pytorch
 # ARG PYTORCH="2.1.1"
@@ -34,15 +34,15 @@ ARG DOCKER_FROM=nvidia/cuda:$CUDA_VERSION-cudnn$CUDNN_VERSION-devel-ubuntu$UBUNT
 #     pip3 install -r exllama/requirements.txt
 
 # Base image
-FROM $DOCKER_FROM as base
+# FROM $DOCKER_FROM as base
 
 # ARG APTPKGS="zsh wget tmux tldr nvtop vim neovim curl rsync net-tools less iputils-ping 7zip zip unzip"
 
 # Install useful command line utility software
-# RUN apt-get update -y && \
-#   apt-get install -y --no-install-recommends $APTPKGS && \
-#   apt-get clean && \
-#   rm -rf /var/lib/apt/lists/*
+RUN apt-get update -y && \
+  apt-get install -y --no-install-recommends $APTPKGS && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install runpod requests
 
