@@ -7,4 +7,6 @@ ARGS=("$@" --listen --api --extensions openai --trust-remote-code --loader ExLla
 
 echo "Launching text-generation-webui with args: ${ARGS[@]}"
 
+pip3 install -r requirements.txt
+
 python3 server.py "${ARGS[@]}"
