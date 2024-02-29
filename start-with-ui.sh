@@ -44,7 +44,7 @@ mkdir -p $VOLUME/logs
 python3 /root/scripts/rp_handler.py >/workspace/logs/rp_handler.log 2>&1 &
 
 ARGS=()
-while true; do
+# while true; do
 	# If the user wants to stop the UI from auto launching, they can run:
 	# touch $VOLUME/do.not.launch.UI
 	# if [[ ! -f $VOLUME/do.not.launch.UI ]]; then
@@ -59,11 +59,11 @@ while true; do
 		# 	ARGS=("${ARGS[@]}" ${UI_ARGS})
 		# fi
 
-	($VOLUME/run-text-generation-webui.sh "${ARGS[@]}" 2>&1) >>$VOLUME/logs/text-generation-webui.log
+($SCRIPTDIR/run-text-generation-webui.sh "${ARGS[@]}" 2>&1) >>$VOLUME/logs/text-generation-webui.log
 
 	# fi
-	sleep 2
-done
+# 	sleep 2
+# done
 
 # shouldn't actually reach this point
 sleep infinity
