@@ -59,7 +59,7 @@ ARGS=()
 		# 	ARGS=("${ARGS[@]}" ${UI_ARGS})
 		# fi
 
-($SCRIPTDIR/run-text-generation-webui.sh "${ARGS[@]}" 2>&1) >>$VOLUME/logs/text-generation-webui.log
+(./run-text-generation-webui.sh "${ARGS[@]}" 2>&1) >>$VOLUME/logs/text-generation-webui.log
 
 	# fi
 # 	sleep 2
