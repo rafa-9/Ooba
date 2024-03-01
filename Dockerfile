@@ -59,7 +59,7 @@ COPY conf-files/tmux.conf /root/.tmux.conf
 # This file is for macOS users using iTerm2. It provides these features: https://iterm2.com/documentation-shell-integration.html
 COPY conf-files/iterm2_shell_integration.zsh /root/.iterm2_shell_integration.zsh
 # Set default shell to ZSH
-COPY conf-files/passwd /etc/passwd
+# COPY conf-files/passwd /etc/passwd
 
 RUN pip3 install runpod requests
 
