@@ -43,6 +43,7 @@ fi
 if [[ ! -d /workspace/text-generation-webui ]]; then
 	# If we don't already have /workspace/text-generation-webui, move it there
 	mv /root/text-generation-webui /workspace
+fi
 
 # If passed a MODEL variable from Runpod template, start it downloading
 # This will block the UI until completed
