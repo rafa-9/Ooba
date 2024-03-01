@@ -57,7 +57,7 @@ COPY conf-files/zshrc /root/.zshrc
 COPY conf-files/thebloke.zsh-theme /root/ohmyzsh/custom/themes/
 COPY conf-files/tmux.conf /root/.tmux.conf
 # This file is for macOS users using iTerm2. It provides these features: https://iterm2.com/documentation-shell-integration.html
-COPY conf-files/iterm2_shell_integration.zsh /root/.iterm2_shell_integration.zsh
+# COPY conf-files/iterm2_shell_integration.zsh /root/.iterm2_shell_integration.zsh
 # Set default shell to ZSH
 # COPY conf-files/passwd /etc/passwd
 
