@@ -51,15 +51,6 @@ RUN git config --global credential.helper store && \
 # Install Oh My Zsh for better command line experience: https://github.com/ohmyzsh/ohmyzsh
 RUN bash -c "ZSH=/root/ohmyzsh $(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
-# Add some config files for a nicer command line setup
-COPY conf-files/vimrc /root/.vimrc
-COPY conf-files/zshrc /root/.zshrc
-COPY conf-files/thebloke.zsh-theme /root/ohmyzsh/custom/themes/
-COPY conf-files/tmux.conf /root/.tmux.conf
-# This file is for macOS users using iTerm2. It provides these features: https://iterm2.com/documentation-shell-integration.html
-# COPY conf-files/iterm2_shell_integration.zsh /root/.iterm2_shell_integration.zsh
-# Set default shell to ZSH
-# COPY conf-files/passwd /etc/passwd
 
 RUN pip3 install runpod requests
 
