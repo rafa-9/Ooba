@@ -9,18 +9,18 @@ VOLUME=/runpod-volume
 mkdir -p $VOLUME/logs
 
 # Start build of llama-cpp-python in background
-# if [[ ! -f /.built.llama-cpp-python ]]; then
-# 	"$SCRIPTDIR"/build-llama-cpp-python.sh >>$VOLUME/logs/build-llama-cpp-python.log 2>&1 &
-# fi
+if [[ ! -f /.built.llama-cpp-python ]]; then
+	"$SCRIPTDIR"/build-llama-cpp-python.sh >>$VOLUME/logs/build-llama-cpp-python.log 2>&1 &
+fi
 
-# if [[ $PUBLIC_KEY ]]; then
-# 	mkdir -p ~/.ssh
-# 	chmod 700 ~/.ssh
-# 	cd ~/.ssh
-# 	echo "$PUBLIC_KEY" >>authorized_keys
-# 	chmod 700 -R ~/.ssh
-# 	service ssh start
-# fi
+if [[ $PUBLIC_KEY ]]; then
+	mkdir -p ~/.ssh
+	chmod 700 ~/.ssh
+	cd ~/.ssh
+	echo "$PUBLIC_KEY" >>authorized_keys
+	chmod 700 -R ~/.ssh
+	service ssh start
+fi
 
 # Move text-generation-webui's folder to $VOLUME so models and all config will persist
 # "$SCRIPTDIR"/textgen-on-workspace.sh
@@ -34,12 +34,16 @@ mkdir -p $VOLUME/logs
 # fi
 
 # Update text-generation-webui to the latest commit
-# cd /workspace/text-generation-webui && git pull
+cd $VOLUME/text-generation-webui && git pull
+
+# Update exllama to the latest commit
+cd $VOLUME/text-generation-webui/repositories/exllama && git pull
 
 # Move the script that launches text-gen to $VOLUME, so users can make persistent changes to CLI arguments
 # if [[ ! -f $VOLUME/run-text-generation-webui.sh ]]; then
 	mv "$SCRIPTDIR"/run-text-generation-webui.sh $VOLUME/run-text-generation-webui.sh
 # fi
+
 
 python3 /root/scripts/rp_handler.py >/runpod-volume/logs/rp_handler.log 2>&1 &
 
