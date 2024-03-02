@@ -89,4 +89,4 @@ ARGS=("$@" --listen --api --extensions openai --trust-remote-code --loader ExLla
 
 echo "Launching text-generation-webui with args: ${ARGS[@]}"
 
-python3 server.py "${ARGS[@]}"
+# python3 server.py "${ARGS[@]}"
