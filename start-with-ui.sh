@@ -85,7 +85,7 @@ ARGS=()
 cd /runpod-volume/text-generation-webui
 source /workspace/venv/bin/activate
 
-ARGS=("$@" --listen --api --extensions openai --trust-remote-code --loader ExLlamav2_HF --model LoneStriker_Air-Striker-Mixtral-8x7B-Instruct-ZLoss-3.75bpw-h6-exl2)
+ARGS=("$@" --listen --api --extensions openai --trust-remote-code --loader ExLlamav2_HF --model cloudyu/Mixtral_34Bx2_MoE_60B)
 
 echo "Launching text-generation-webui with args: ${ARGS[@]}"
 

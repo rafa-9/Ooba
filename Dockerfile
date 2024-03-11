@@ -6,18 +6,25 @@ ARG DOCKER_FROM=nvidia/cuda:$CUDA_VERSION-cudnn$CUDNN_VERSION-devel-ubuntu$UBUNT
 # Base NVidia CUDA Ubuntu image
 FROM $DOCKER_FROM AS base
 
-# Install Python plus openssh, which is our minimum set of required packages.
-RUN apt-get update -y && \
-  apt-get install -y python3 python3-pip python3-venv && \
-  apt-get install -y --no-install-recommends openssh-server openssh-client git git-lfs && \
-  python3 -m pip install --upgrade pip && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/*
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+# Upgrade apt packages and install required dependencies
+RUN apt update && \
+  apt upgrade -y && \
+  apt install -y \
+  python3-dev \
+  python3-venv \
+  git \
+  git-lfs && \
+  apt autoremove -y && \
+  rm -rf /var/lib/apt/lists/* && \
+  apt clean -y
 
 ENV PATH="/usr/local/cuda/bin:${PATH}"
 
 # Install pytorch
-ARG PYTORCH="2.1.1"
+ARG PYTORCH="2.2.0"
 ARG CUDA="121"
 RUN pip3 install --no-cache-dir -U torch==$PYTORCH torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu$CUDA
 
